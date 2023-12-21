@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  overflow-x: hidden;
+}
+.hero{
+  background-image: url('./assets/BG.png');
+}
+
+.bounce {
+  animation: bounce 1s infinite;
+}
+.hidden{
+  display: none;
+}
+
+
+.text {
+  animation: zoomup 2s ease-out ;
+  display: inline-block;
+  animation-delay: calc(200ms);
+}
+
+.text1 {
+  animation: zoomup 2s ease-out ;
+  display: inline-block;
+  animation-delay: calc(200ms);
+}
+@keyframes zoomup {
+  0%
+   {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1) translateY(0px);
+    filter: blur(1px);
+    opacity: 100;
+  }
+}

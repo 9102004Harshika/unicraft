@@ -1,0 +1,43 @@
+
+import { content } from '../assets'
+import React, { useEffect, useRef, useState } from "react";
+ 
+const RevealOnScroll = ({ children }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef(null);
+ 
+    useEffect(() => {
+        const onWindScroll = () => {
+            const element = ref.current;
+            if (element) {
+                const { top } = element.getBoundingClientRect();
+                const isVisible = top < window.innerHeight;
+                setIsVisible(isVisible);
+            }
+        };
+ 
+        window.addEventListener("scroll", onWindScroll);
+        return () => {
+            window.removeEventListener("scroll", onWindScroll);
+        };
+    }, []);
+ 
+    const classes = `transition-opacity duration-1000 mt-60 mb-40
+        ${isVisible ? "opacity-100" : "opacity-0"
+        }`;
+ 
+    return (
+        <div ref={ref} className={classes}>
+            {children}
+        </div>
+    );
+};
+const Quote = () => {
+  return (
+    <RevealOnScroll className='w-full   py-40 px-20'>
+       <img src={content} alt="" className='w-screen h-full'/>
+    </RevealOnScroll>
+  )
+}
+
+export default Quote
